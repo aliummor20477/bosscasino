@@ -2,78 +2,46 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>My Web Page</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <h1 id="hello-world">Hello, World!</h1>
-    <p>Edit this code and click Run.</p>
-    <script src="script.js"></script>
-</body>
-</html><!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>বস মেগা ক্যাসিনো - প্রিমিয়াম</title>
+    <title>বস মেগা ক্যাসিনো - ১০টি গেম</title>
     <style>
-        :root { --gold: #ffd700; --dark: #0f0f0f; --bkash: #d12053; --nagad: #f7941d; }
-        body { margin: 0; font-family: 'Segoe UI', sans-serif; background: var(--dark); color: #fff; }
+        :root { --gold: #ffd700; --dark: #0f0f0f; --bkash: #d12053; }
+        body { margin: 0; font-family: 'Segoe UI', sans-serif; background: var(--dark); color: #fff; overflow-x: hidden; }
         .hidden { display: none !important; }
         
-        /* Auth Styles */
+        /* Auth & Nav */
         .auth-container { height: 100vh; display: flex; justify-content: center; align-items: center; background: radial-gradient(circle, #222, #000); }
         .auth-card { background: #1a1a1a; padding: 30px; border-radius: 15px; border: 2px solid var(--gold); width: 320px; text-align: center; }
         input { width: 100%; padding: 12px; margin: 8px 0; border-radius: 5px; border: 1px solid #444; background: #222; color: #fff; box-sizing: border-box; }
-        .btn { width: 100%; padding: 12px; background: var(--gold); border: none; font-weight: bold; cursor: pointer; border-radius: 5px; margin-top: 10px; }
-
-        /* Navbar */
         nav { background: #111; padding: 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--gold); position: sticky; top: 0; z-index: 1000; }
         .balance-display { font-size: 18px; color: var(--gold); font-weight: bold; background: #222; padding: 5px 15px; border-radius: 20px; border: 1px solid var(--gold); }
 
-        /* Headline */
-        .promo-banner { background: linear-gradient(90deg, #ff0000, #990000); padding: 10px; text-align: center; font-weight: bold; font-size: 14px; border-bottom: 1px solid var(--gold); }
+        /* Game Grid */
+        .game-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; padding: 20px; }
+        .game-item { background: linear-gradient(45deg, #1a472a, #000); padding: 20px; border-radius: 10px; border: 2px solid var(--gold); text-align: center; cursor: pointer; transition: 0.3s; }
+        .game-item:hover { transform: scale(1.05); box-shadow: 0 0 15px var(--gold); }
+        .game-item h3 { margin: 10px 0 5px 0; font-size: 16px; }
 
-        /* Home/Game Cards */
-        .container { padding: 20px; max-width: 600px; margin: 0 auto; text-align: center; }
-        .action-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
-        .dep-btn { background: var(--bkash); color: white; border: none; padding: 10px; border-radius: 5px; cursor: pointer; }
-        .wit-btn { background: #28a745; color: white; border: none; padding: 10px; border-radius: 5px; cursor: pointer; }
+        /* Real Slot Game UI */
+        .slot-machine { background: #222; border: 4px solid var(--gold); border-radius: 15px; padding: 15px; width: 90%; max-width: 400px; margin: 20px auto; }
+        .grid-5x4 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 5px; background: #000; padding: 10px; }
+        .slot-card { height: 60px; background: #fff; color: #000; display: flex; justify-content: center; align-items: center; font-size: 24px; border-radius: 4px; border: 1px solid var(--gold); }
+        .spin-btn { background: var(--gold); border: none; padding: 15px; width: 100%; border-radius: 50px; font-weight: bold; font-size: 20px; cursor: pointer; margin-top: 15px; }
 
-        /* Modal / Screens */
-        .screen { background: #1a1a1a; border-radius: 15px; padding: 20px; border: 1px solid var(--gold); margin-top: 20px; }
-        .method-box { display: flex; gap: 10px; justify-content: center; margin: 20px 0; }
-        .method { padding: 15px; border-radius: 10px; border: 1px solid #444; cursor: pointer; width: 100px; }
-        .method img { width: 50px; }
-        .method.active { border-color: var(--gold); background: #333; }
-
-        /* Admin Panel Styles */
+        /* Admin & Others */
         #admin-panel { background: #fff; color: #000; padding: 20px; min-height: 100vh; }
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        th, td { border: 1px solid #ccc; padding: 10px; text-align: left; }
-        .approve-btn { background: green; color: white; border: none; padding: 5px 10px; cursor: pointer; }
+        .deposit-card { background: #fff; color: #000; padding: 30px; border-radius: 15px; max-width: 400px; margin: 20px auto; text-align: center; }
     </style>
 </head>
 <body>
 
-<div id="promo" class="promo-banner hidden">
-    🔥 একাউন্ট করলে ২০০৳ বোনাস! ২০০৳ ডিপোজিট করলে মোট ৪০০৳ ব্যালেন্স! 🔥
-</div>
-
 <div id="auth-screen" class="auth-container">
-    <div class="auth-card" id="reg-box">
-        <h2 style="color:var(--gold)">রেজিস্ট্রেশন</h2>
-        <input type="text" id="reg-user" placeholder="ইউজারনেম">
-        <input type="password" id="reg-pass" placeholder="পাসওয়ার্ড">
-        <button class="btn" onclick="registerUser()">অ্যাকাউন্ট খুলুন</button>
-        <p onclick="toggleAuth(false)" style="font-size:12px; cursor:pointer;">ইতিমধ্যে অ্যাকাউন্ট আছে? লগইন করুন</p>
-    </div>
-    <div class="auth-card hidden" id="login-box">
-        <h2 style="color:var(--gold)">লগইন</h2>
-        <input type="text" id="log-user" placeholder="ইউজারনেম">
-        <input type="password" id="log-pass" placeholder="পাসওয়ার্ড">
-        <button class="btn" onclick="loginUser()">প্রবেশ করুন</button>
-        <p onclick="toggleAuth(true)" style="font-size:12px; cursor:pointer;">নতুন? অ্যাকাউন্ট খুলুন</p>
+    <div class="auth-card">
+        <h2 style="color:var(--gold)">BOSS LOGIN</h2>
+        <input type="text" id="log-user" placeholder="Username">
+        <input type="password" id="log-pass" placeholder="Password">
+        <button class="btn" style="width:100%; padding:10px; background:var(--gold); cursor:pointer;" onclick="loginUser()">Login / Register</button>
+        <p style="font-size:10px; margin-top:10px;">*নতুন নাম দিলে অটো রেজিস্ট্রেশন হবে এবং ২০০৳ বোনাস পাবেন</p>
     </div>
 </div>
 
@@ -81,103 +49,65 @@
     <nav>
         <span style="font-weight:bold; color:var(--gold)" onclick="showPage('home')">BOSS CASINO</span>
         <div class="balance-display">৳ <span id="balance">0.00</span></div>
-        <button onclick="logout()" style="background:none; border:1px solid gray; color:gray; cursor:pointer;">Exit</button>
+        <button onclick="showPage('deposit')" style="background:var(--bkash); color:#fff; border:none; padding:5px 10px; border-radius:5px; cursor:pointer;">ডিপোজিট</button>
     </nav>
 
-    <div class="container">
-        <div class="action-btns">
-            <button class="dep-btn" onclick="showPage('deposit')">ডিপোজিট</button>
-            <button class="wit-btn" onclick="showPage('withdraw')">উত্তোলন</button>
+    <div id="home-page" class="page">
+        <div style="text-align:center; padding:10px; background:red; font-size:12px;">🔥 ২০০৳ ডিপোজিট করলে মোট ৪০০৳ ব্যালেন্স পাবেন! 🔥</div>
+        <h2 style="text-align:center;">আমাদের ১০টি সেরা গেম</h2>
+        <div class="game-grid">
+            <div class="game-item" onclick="launchGame('Mega Spade')"><span>🎰</span><h3>Mega Spade</h3></div>
+            <div class="game-item" onclick="launchGame('Fruit Ninja')"><span>🍎</span><h3>Fruit Ninja</h3></div>
+            <div class="game-item" onclick="launchGame('Golden 777')"><span>💎</span><h3>Golden 777</h3></div>
+            <div class="game-item" onclick="launchGame('Joker Luck')"><span>🤡</span><h3>Joker Luck</h3></div>
+            <div class="game-item" onclick="launchGame('Dragon Fire')"><span>🐉</span><h3>Dragon Fire</h3></div>
+            <div class="game-item" onclick="launchGame('Crazy Time')"><span>🎡</span><h3>Crazy Time</h3></div>
+            <div class="game-item" onclick="launchGame('Card King')"><span>♠️</span><h3>Card King</h3></div>
+            <div class="game-item" onclick="launchGame('Tiger Gold')"><span>🐯</span><h3>Tiger Gold</h3></div>
+            <div class="game-item" onclick="launchGame('Money Train')"><span>🚂</span><h3>Money Train</h3></div>
+            <div class="game-item" onclick="launchGame('Boss Fortune')"><span>👑</span><h3>Boss Fortune</h3></div>
         </div>
+    </div>
 
-        <div id="home-page" class="page">
-            <div style="background:linear-gradient(45deg, #1a472a, #000); padding:50px; border-radius:15px; border:3px solid var(--gold); cursor:pointer;" onclick="checkPlay()">
-                <h2 style="margin:0">🎰 MEGA SPADE FORTUNES</h2>
-                <p>ডিপোজিট করে খেলা শুরু করুন</p>
-            </div>
+    <div id="game-play-screen" class="page hidden" style="text-align:center;">
+        <h2 id="game-title" style="color:var(--gold)"></h2>
+        <div class="slot-machine">
+            <div class="grid-5x4" id="slot-grid"></div>
+            <button class="spin-btn" onclick="runSpin()">SPIN (10.00)</button>
         </div>
+        <button onclick="showPage('home')" style="color:gray; background:none; border:none; cursor:pointer;">Exit Game</button>
+    </div>
 
-        <div id="deposit-page" class="page hidden">
-            <div class="screen">
-                <img src="https://www.logo.wine/a/logo/BKash/BKash-Logo.wine.svg" style="width:100px;">
-                <p>বিকাশ পার্সোনাল (Send Money)</p>
-                <div style="background:#000; padding:10px; border:1px dashed var(--gold); font-size:20px;">
-                    <b id="bk-num">01828407381</b> 
-                    <button onclick="copyNum()" style="font-size:10px; margin-left:10px;">Copy</button>
-                </div>
-                <input type="number" id="dep-amount" placeholder="টাকার পরিমাণ">
-                <input type="text" id="dep-trx" placeholder="Transaction ID">
-                <button class="btn" onclick="requestDeposit()">ডিপোজিট রিকোয়েস্ট পাঠান</button>
-            </div>
-        </div>
-
-        <div id="withdraw-page" class="page hidden">
-            <div class="screen">
-                <h3>টাকা উত্তোলন</h3>
-                <div class="method-box">
-                    <div class="method active"><img src="https://www.logo.wine/a/logo/BKash/BKash-Logo.wine.svg"></div>
-                    <div class="method"><img src="https://www.logo.wine/a/logo/Nagad/Nagad-Logo.wine.svg"></div>
-                </div>
-                <input type="number" id="wit-num" placeholder="বিকাশ/নগদ নাম্বার">
-                <input type="number" id="wit-amount" placeholder="টাকার পরিমাণ">
-                <input type="password" id="wit-pass" placeholder="পাসওয়ার্ড">
-                <button class="btn" style="background:#28a745; color:white;" onclick="alert('উত্তোলন রিকোয়েস্ট পাঠানো হয়েছে')">উত্তোলন করুন</button>
-            </div>
+    <div id="deposit-page" class="page hidden">
+        <div class="deposit-card">
+            <img src="https://www.logo.wine/a/logo/BKash/BKash-Logo.wine.svg" style="width:100px;">
+            <p>বিকাশ পার্সোনাল (Send Money)</p>
+            <h2 style="color:var(--bkash)">01828407381</h2>
+            <input type="number" id="dep-amt" placeholder="টাকার পরিমাণ">
+            <input type="text" id="dep-trx" placeholder="Transaction ID">
+            <button onclick="requestDeposit()" style="width:100%; padding:10px; background:var(--bkash); color:white; border:none; cursor:pointer;">রিকোয়েস্ট পাঠান</button>
         </div>
     </div>
 </div>
 
 <div id="admin-panel" class="hidden">
-    <div style="display:flex; justify-content:space-between;">
-        <h1>অ্যাডমিন প্যানেল (A to Z Control)</h1>
-        <button onclick="location.reload()">Back to Site</button>
-    </div>
-    <h3>ডিপোজিট রিকোয়েস্ট লিস্ট</h3>
-    <table>
-        <thead>
-            <tr>
-                <th>ইউজার</th>
-                <th>টাকা</th>
-                <th>TrxID</th>
-                <th>অ্যাকশন</th>
-            </tr>
-        </thead>
-        <tbody id="admin-req-list">
-            </tbody>
+    <h1>অ্যাডমিন প্যানেল</h1>
+    <table border="1" style="width:100%">
+        <thead><tr><th>ইউজার</th><th>টাকা</th><th>TrxID</th><th>অ্যাকশন</th></tr></thead>
+        <tbody id="admin-list"></tbody>
     </table>
+    <button onclick="location.reload()" style="margin-top:20px;">Back</button>
 </div>
 
 <script>
     let currentUser = null;
-    let requests = [];
-
-    // ন্যাভিগেশন লজিক
-    function toggleAuth(toReg) {
-        document.getElementById('reg-box').classList.toggle('hidden', !toReg);
-        document.getElementById('login-box').classList.toggle('hidden', toReg);
-    }
-
-    function showPage(pageId) {
-        document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
-        document.getElementById(pageId + '-page').classList.remove('hidden');
-    }
-
-    // রেজিস্ট্রেশন ও লগইন
-    function registerUser() {
-        const u = document.getElementById('reg-user').value;
-        const p = document.getElementById('reg-pass').value;
-        if(u && p) {
-            alert("সফলভাবে অ্যাকাউন্ট তৈরি হয়েছে! ২০০৳ বোনাস পেয়েছেন। এবার লগইন করুন।");
-            localStorage.setItem(u, JSON.stringify({pass: p, bal: 200, hasDeposited: false}));
-            toggleAuth(false);
-        }
-    }
+    const symbols = ['♠️','♥️','♦️','♣️','7️⃣','💎','👑','🍀'];
 
     function loginUser() {
         const u = document.getElementById('log-user').value;
         const p = document.getElementById('log-pass').value;
+        if(!u || !p) return alert("সব দিন বস");
 
-        // অ্যাডমিন চেক
         if(u === 'admin' && p === 'admin123') {
             document.getElementById('auth-screen').classList.add('hidden');
             document.getElementById('admin-panel').classList.remove('hidden');
@@ -185,91 +115,111 @@
             return;
         }
 
-        const user = JSON.parse(localStorage.getItem(u));
-        if(user && user.pass === p) {
+        let user = JSON.parse(localStorage.getItem(u));
+        if(!user) {
+            user = { pass: p, bal: 200, hasDep: false }; // নতুন ইউজারকে ২০০ বোনাস
+            localStorage.setItem(u, JSON.stringify(user));
+        }
+        
+        if(user.pass === p) {
             currentUser = u;
             document.getElementById('auth-screen').classList.add('hidden');
             document.getElementById('main-app').classList.remove('hidden');
-            document.getElementById('promo').classList.remove('hidden');
             updateUI();
-        } else {
-            alert("ভুল ইউজার বা পাসওয়ার্ড!");
+        } else { alert("ভুল পাসওয়ার্ড!"); }
+    }
+
+    function showPage(p) {
+        document.querySelectorAll('.page').forEach(pg => pg.classList.add('hidden'));
+        document.getElementById(p + '-page').classList.remove('hidden');
+    }
+
+    function launchGame(name) {
+        let user = JSON.parse(localStorage.getItem(currentUser));
+        if(!user.hasDep) return alert("বস, গেম খেলতে হলে আগে অন্তত একবার ডিপোজিট করতে হবে!");
+        
+        document.getElementById('game-title').innerText = name;
+        showPage('game-play');
+        initSlot();
+    }
+
+    function initSlot() {
+        const grid = document.getElementById('slot-grid');
+        grid.innerHTML = '';
+        for(let i=0; i<20; i++) {
+            grid.innerHTML += `<div class="slot-card">${symbols[Math.floor(Math.random()*8)]}</div>`;
         }
     }
 
-    function updateUI() {
-        const user = JSON.parse(localStorage.getItem(currentUser));
-        document.getElementById('balance').innerText = user.bal.toFixed(2);
-    }
+    function runSpin() {
+        let user = JSON.parse(localStorage.getItem(currentUser));
+        if(user.bal < 10) return alert("ব্যালেন্স নেই!");
 
-    // ডিপোজিট রিকোয়েস্ট
-    function requestDeposit() {
-        const amt = document.getElementById('dep-amount').value;
-        const trx = document.getElementById('dep-trx').value;
-        if(amt < 200) { alert("সর্বনিম্ন ডিপোজিট ২০০৳"); return; }
-        
-        let reqList = JSON.parse(localStorage.getItem('dep_requests') || '[]');
-        reqList.push({user: currentUser, amount: amt, trx: trx});
-        localStorage.setItem('dep_requests', JSON.stringify(reqList));
-        
-        alert("রিকোয়েস্ট অ্যাডমিনের কাছে পাঠানো হয়েছে!");
-        showPage('home');
-    }
+        user.bal -= 10;
+        localStorage.setItem(currentUser, JSON.stringify(user));
+        updateUI();
 
-    // অ্যাডমিন প্যানেল রেন্ডার
-    function renderAdmin() {
-        const list = JSON.parse(localStorage.getItem('dep_requests') || '[]');
-        const table = document.getElementById('admin-req-list');
-        table.innerHTML = '';
-        list.forEach((req, index) => {
-            table.innerHTML += `
-                <tr>
-                    <td>${req.user}</td>
-                    <td>${req.amount}</td>
-                    <td>${req.trx}</td>
-                    <td><button class="approve-btn" onclick="approveDep(${index})">Approve</button></td>
-                </tr>
-            `;
+        const cards = document.querySelectorAll('.slot-card');
+        cards.forEach((c, i) => {
+            setTimeout(() => {
+                c.innerHTML = symbols[Math.floor(Math.random()*8)];
+                if(i === 19) checkWin();
+            }, i * 30);
         });
     }
 
-    function approveDep(index) {
-        let list = JSON.parse(localStorage.getItem('dep_requests'));
-        let req = list[index];
-        let user = JSON.parse(localStorage.getItem(req.user));
+    function checkWin() {
+        if(Math.random() > 0.8) {
+            let win = 50;
+            alert("অভিনন্দন বস! ৫০৳ জিতেছেন!");
+            let user = JSON.parse(localStorage.getItem(currentUser));
+            user.bal += win;
+            localStorage.setItem(currentUser, JSON.stringify(user));
+            updateUI();
+        }
+    }
+
+    function requestDeposit() {
+        const amt = document.getElementById('dep-amt').value;
+        const trx = document.getElementById('dep-trx').value;
+        if(amt < 200) return alert("সর্বনিম্ন ২০০৳");
         
-        // ২০০ বোনাস প্লাস ডিপোজিট লজিক
-        let bonus = 0;
-        if(!user.hasDeposited && req.amount >= 200) bonus = 200;
+        let reqs = JSON.parse(localStorage.getItem('requests') || '[]');
+        reqs.push({user: currentUser, amt, trx});
+        localStorage.setItem('requests', JSON.stringify(reqs));
+        alert("অ্যাডমিন চেক করে ব্যালেন্স দিয়ে দিবে বস!");
+        showPage('home');
+    }
+
+    function renderAdmin() {
+        const list = JSON.parse(localStorage.getItem('requests') || '[]');
+        const html = list.map((r, i) => `<tr><td>${r.user}</td><td>${r.amt}</td><td>${r.trx}</td>
+            <td><button onclick="approve(${i})">Approve</button></td></tr>`).join('');
+        document.getElementById('admin-list').innerHTML = html;
+    }
+
+    function approve(i) {
+        let list = JSON.parse(localStorage.getItem('requests'));
+        let r = list[i];
+        let user = JSON.parse(localStorage.getItem(r.user));
         
-        user.bal += parseFloat(req.amount) + bonus;
-        user.hasDeposited = true;
+        // ২০০ ডিপোজিটে ২০০ বোনাস লজিক
+        let total = parseFloat(r.amt);
+        if(!user.hasDep && total >= 200) total += 200;
         
-        localStorage.setItem(req.user, JSON.stringify(user));
-        list.splice(index, 1);
-        localStorage.setItem('dep_requests', JSON.stringify(list));
+        user.bal += total;
+        user.hasDep = true;
+        localStorage.setItem(r.user, JSON.stringify(user));
+        list.splice(i, 1);
+        localStorage.setItem('requests', JSON.stringify(list));
         renderAdmin();
         alert("টাকা অ্যাড করা হয়েছে!");
     }
 
-    function checkPlay() {
-        const user = JSON.parse(localStorage.getItem(currentUser));
-        if(!user.hasDeposited) {
-            alert("গেম খেলতে হলে কমপক্ষে একবার ডিপোজিট করতে হবে!");
-            showPage('deposit');
-        } else {
-            alert("গেম লোড হচ্ছে... (গেম কোড এখানে বসিয়ে দিন)");
-        }
+    function updateUI() {
+        let user = JSON.parse(localStorage.getItem(currentUser));
+        document.getElementById('balance').innerText = user.bal.toFixed(2);
     }
-
-    function copyNum() {
-        const num = document.getElementById('bk-num').innerText;
-        navigator.clipboard.writeText(num);
-        alert("নাম্বার কপি হয়েছে!");
-    }
-
-    function logout() { location.reload(); }
 </script>
-
 </body>
 </html>
